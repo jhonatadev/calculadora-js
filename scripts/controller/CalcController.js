@@ -8,11 +8,11 @@ class CalcController {
     get displayCalc(){
         return this._displayCalc;
     }
-    set displayCalc(){
+    set displayCalc(valor){
         this._displayCalc = valor;
     }
 
-    get _dataAtual(){
+    get dataAtual(){
         return this._dataAtual;
     }
     set dataAtual(valor){
