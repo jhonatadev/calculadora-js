@@ -1,7 +1,18 @@
 class CalcController {
 	constructor() {
 		this._displayCalc = "0"
-		this._dataAtual
+		this._currentDate
+		this.initialize()
+	}
+
+	initialize() {
+		let displayCalcEl = document.querySelector('#display')
+		let dateEl = document.querySelector('#data')
+		let timeEl = document.querySelector('#hora')
+
+		displayCalcEl.innerHTML = '465456'
+		dateEl.innerHTML = '28/07/2019'
+		timeEl.innerHTML = '23:59'
 	}
 
 	get displayCalc() {
@@ -11,10 +22,10 @@ class CalcController {
 		this._displayCalc = valor
 	}
 
-	get dataAtual() {
-		return this._dataAtual
+	get currentDate() {
+		return this._currentDate
 	}
-	set dataAtual(data) {
-		this._dataAtual = data
+	set currentDate(valor) {
+		this._currentDate = valor
 	}
 }
