@@ -44,8 +44,25 @@ class CalcController {
     return (['+', '-', '*', '%', '/'].indexOf(value) > -1)
   }
 
-	addOperation(value) {
+  pushOperation(value) {
+    this._operation.push(value)
 
+    if (this._operation.length > 3) {
+      this.cal()
+    }
+  }
+
+  calc() {
+    let last = this._operation.pop()
+
+    let result = eval(this._operation.join(''))
+
+    this._operation = [result, last]
+  }
+
+  setLastNumberToDisplay() {}
+
+	addOperation(value) {
     if (isNaN(this.getLastOperation())) {
       // String
       if (this.isOperator(value)) {
@@ -53,18 +70,23 @@ class CalcController {
         this.setLastOperation(value)
       } else if (isNaN(value)) {
         // Outra Coisa
-        console.log(value)
+        console.log('outra coisa', value)
       } else {
-        this._operation.push(value)
+        this.pushOperation(value)
       }
 
     } else {
       // Number
-      let newValue = this.getLastOperation().toString() + value.toString()
-      this.setLastOperation(parseInt(newValue))
-    }
+      if (this.isOperator(value)) {
+        this.pushOperation(value)
+      } else {
+        let newValue = this.getLastOperation().toString() + value.toString()
+        this.setLastOperation(parseInt(newValue))
 
-		console.log(this._operation)
+        // Atualizar Display
+        this.setLastNumberToDisplay()
+      }
+    }
 	}
 
 	setError() {
